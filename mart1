@@ -1,0 +1,29 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv("boston.csv")
+print(df.head())
+print(df.info())
+print(df.isnull().sum())
+
+df.fillna(df.median(), inplace=True)
+print(df.describe())
+
+df.to_csv("boston_cleaned.csv", index=False)
+
+plt.figure(figsize=(10,6))
+sns.scatterplot(x='AGE', y='MEDV', data=df)
+plt.title("Ev Yaşı (AGE) ile Ev Fiyatı (MEDV) İlişkisi")
+plt.xlabel("AGE")
+plt.ylabel("MEDV")
+plt.grid(True)
+plt.show()
+
+plt.figure(figsize=(10,6))
+sns.scatterplot(x='RM', y='MEDV', data=df)
+plt.title("Oda Sayısı (RM) ile Ev Fiyatı (MEDV) İlişkisi")
+plt.xlabel("RM")
+plt.ylabel("MEDV")
+plt.grid(True)
+plt.show()
